@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import user from './user';
 
-class MyBooks extends Component {
-  render(this.user) {
-    return (
+// class MyBooks extends Component {
+//   render(this.user) {
+//     return (
 
-    )
-  }
-}
+//     )
+//   }
+// }
 
-export default MyBooks;
+// export default MyBooks;
