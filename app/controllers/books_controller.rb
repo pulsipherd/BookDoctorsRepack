@@ -1,47 +1,35 @@
-class Api::BooksController < ApplicationController
-  def show
-    @book = Book.find(params[:id])
-  end
-
+class BooksController < ApplicationController
+  
   def index
-    @books = Book.all
-  end
-
-  def new
-    @book = Book.new
+    render json: Book.all
   end
 
   def create
-    @book = Book.new(book_params)
-
-    if @book.save
-      redirect_to books_path
+    book = Book.new(book_params)
+    if book.save
+      render json: book
     else
-      render :new
+      render json: { errors: book.errors }, status: :unprocessable_entity
     end
   end
 
-  def edit
-    @book = Book.find(params[:id])
-  end
-
   def update
-    @book = Book.find(params[:id])
-    if @book.update(book_params)
-      redirect_to books_path
+    book = Book.find(params[:id])
+    if book.update(book_params)
+      render json: book
     else
-      render :edit
+      render json: { errors: book.errors }, status: :unprocessable_entity
     end
   end
 
   def destroy
     Book.find(params[:id]).destroy
-    redirect_to books_path
+    render json: { message: 'Book has been deleted' }
   end
-end
-
-private
-
-def book_params
-  params.require(:book).permit(:title, :author, :blurb, :difficulty, :topics, :healings)
+  
+  private
+  
+  def book_params
+    params.require(:book).permit(:title, :author, :blurb, :difficulty, :keywords, :lessons)
+  end
 end

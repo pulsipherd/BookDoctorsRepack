@@ -22,10 +22,8 @@ ActiveRecord::Schema.define(version: 2018_06_26_222715) do
     t.string "difficulty"
     t.string "keywords"
     t.string "lessons"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,5 +56,4 @@ ActiveRecord::Schema.define(version: 2018_06_26_222715) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "books", "users"
 end

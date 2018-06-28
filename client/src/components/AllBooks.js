@@ -1,21 +1,32 @@
-import { Component } from "react";
+import React, { Component } from "react";
+
 
 
 class AllBooks extends Component {
   state = { books: [] }
 
   componentDidMount() {
-    fetch('api/books')
+    fetch('/books')
       .then(res => res.json())
-      .then(books => this.setState({ books }) )
-      // method: 'POST',
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   'Accept': 'application.json'
-      // },
-      // body: Book.title
+      .then(books => this.setState({ books }))
+
+    // method: 'POST',
+    // headers: {
+    //   'Content-Type': 'application/json',
+    //   'Accept': 'application.json'
+    // },
+    // body: Book.title
     // )
   }
+  render() {
+    debugger
+  return (
+    <div>
+      All Books
+    </div>
+    )    
+  }
+
 }
 // }.then(res => res.json() )
 //   .then(book => {

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :books
   end
 
+  resources :books
+
   #Do not place any routes below this one
   get '*other', to: 'static#index'
 end
