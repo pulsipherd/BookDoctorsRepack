@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
+import axios from 'axios';
 
 
 class AllBooks extends Component {
   state = { books: [] }
 
   componentDidMount() {
-    fetch('/books')
-      .then(res => res.json())
-      .then(books => this.setState({ books }))
+    axios.get('api/books/')
+      .then( res => this.setState({ books: res.data}) )
+      // .then(books => this.setState({ books }) )
 
     // method: 'POST',
     // headers: {
@@ -19,21 +20,17 @@ class AllBooks extends Component {
     // )
   }
   render() {
-    debugger
-  return (
-    <div>
-      All Books
-    </div>
-    )    
+    let { books } = this.state;
+    return <div>
+        <ul>
+          {books.map(b => <li key={b.id}>
+              <Link to={`/books/${b.id}`}>
+                {b.title}
+              </Link>, {b.keywords}, {b.lessons}
+            </li>)}
+        </ul>
+      </div>;  
   }
-
 }
-// }.then(res => res.json() )
-//   .then(book => {
-//       const { books } = this.state;
-//       this.setState({ books: [...books, book] });
-//   })
-
-
 
 export default AllBooks;
